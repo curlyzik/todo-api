@@ -23,5 +23,14 @@ These are the api endpoints for the todo app
 ```
 The Todo Api and User Api can be found in the [core/api folder](https://github.com/curlyzik/todo-api/tree/main/core/api) and [users/api folder](https://github.com/curlyzik/todo-api/tree/main/users/api) respectively
 
-### Integration of Unit Testing For Each EndPoint
+## Integration of Unit Testing For Each EndPoint
 The Todo Unit Test and User Unit Test can be found in the [core folder](https://github.com/curlyzik/todo-api/blob/main/core/tests.py) and [users folder](https://github.com/curlyzik/todo-api/blob/main/users/tests.py) respectively
+
+## Test Endpoints With POSTMAN
+You can test each endpoints using POSTMAN with the the [POSTMAN JSON File](https://github.com/curlyzik/todo-api/blob/main/Todo.postman_collection.json)
+
+Steps:
+1. Download PostMan
+2. Download the [JSON FILE](https://github.com/curlyzik/todo-api/blob/main/Todo.postman_collection.json)
+3. Open PostMan, Click on Collection.
+4. Click on Import and upload the download file
