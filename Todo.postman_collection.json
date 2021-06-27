@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "36e629c7-5b63-4d48-8517-2e8c35f16375",
+		"name": "Todo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todo Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyMjUyLCJqdGkiOiJhNGVhNjZmYWUwNTU0NzQ4YjQxMjE0OGM0NzFiNDFjZiIsInVzZXJfaWQiOjh9.HTAYMr-L8DFmDNuhy7PUz8NzHzGmsLwhY4TYXgLCyXo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "First Todo for Isaac",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "First Todo Description",
+							"type": "text"
+						},
+						{
+							"key": "completed",
+							"value": "True",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{todo}}/todo/create/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyMjUyLCJqdGkiOiJhNGVhNjZmYWUwNTU0NzQ4YjQxMjE0OGM0NzFiNDFjZiIsInVzZXJfaWQiOjh9.HTAYMr-L8DFmDNuhy7PUz8NzHzGmsLwhY4TYXgLCyXo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{todo}}/todo",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo Completed List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyMjUyLCJqdGkiOiJhNGVhNjZmYWUwNTU0NzQ4YjQxMjE0OGM0NzFiNDFjZiIsInVzZXJfaWQiOjh9.HTAYMr-L8DFmDNuhy7PUz8NzHzGmsLwhY4TYXgLCyXo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{todo}}/todo/completed/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"completed",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo Uncompleted List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyNTkxLCJqdGkiOiJlYzJkMGUwZDI5YTE0NGM4YThmODBlZThjNzM3ODJkNiIsInVzZXJfaWQiOjd9.b9SjIhxIYGGT6joQhUAmSeuxylO12qiBfEqH6St-jIY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{todo}}/todo/uncompleted/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"uncompleted",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo Detail",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyNTkxLCJqdGkiOiJlYzJkMGUwZDI5YTE0NGM4YThmODBlZThjNzM3ODJkNiIsInVzZXJfaWQiOjd9.b9SjIhxIYGGT6joQhUAmSeuxylO12qiBfEqH6St-jIY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{todo}}/todo/details/1",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"details",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyMjUyLCJqdGkiOiJhNGVhNjZmYWUwNTU0NzQ4YjQxMjE0OGM0NzFiNDFjZiIsInVzZXJfaWQiOjh9.HTAYMr-L8DFmDNuhy7PUz8NzHzGmsLwhY4TYXgLCyXo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Updated Todo",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Updated Description",
+							"type": "text"
+						},
+						{
+							"key": "completed",
+							"value": "False",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{todo}}/todo/update/2/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"update",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Todo Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjI2MDkyMjUyLCJqdGkiOiJhNGVhNjZmYWUwNTU0NzQ4YjQxMjE0OGM0NzFiNDFjZiIsInVzZXJfaWQiOjh9.HTAYMr-L8DFmDNuhy7PUz8NzHzGmsLwhY4TYXgLCyXo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{todo}}/todo/delete/1/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"todo",
+						"delete",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "fsf@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "isaac2000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{todo}}/users/login/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"users",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "new-user",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "new-user@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password1",
+							"value": "new-user-password",
+							"type": "text"
+						},
+						{
+							"key": "password2",
+							"value": "new-user-password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{todo}}/users/register/",
+					"host": [
+						"{{todo}}"
+					],
+					"path": [
+						"users",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
