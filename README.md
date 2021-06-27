@@ -21,5 +21,7 @@ These are the api endpoints for the todo app
 /todo/update/<todo_id>/ # for updating a todo
 /todo/delete/<todo_id>/ # for deleting a todo
 ```
-The Todo Api and User Api can be found in the [core folder](https://github.com/curlyzik/todo-api/tree/main/core/api) and [users folder](https://github.com/curlyzik/todo-api/tree/main/users/api) respectively
-#
+The Todo Api and User Api can be found in the [core/api folder](https://github.com/curlyzik/todo-api/tree/main/core/api) and [users/api folder](https://github.com/curlyzik/todo-api/tree/main/users/api) respectively
+
+### Integration of Unit Testing For Each EndPoint
+The Todo Unit Test and User Unit Test can be found in the [core folder](https://github.com/curlyzik/todo-api/blob/main/core/tests.py) and [users folder](https://github.com/curlyzik/todo-api/blob/main/users/tests.py) respectively
