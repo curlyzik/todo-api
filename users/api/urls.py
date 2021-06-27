@@ -1,5 +1,4 @@
 from django.urls import path
-from dj_rest_auth.views import PasswordResetView, PasswordResetConfirmView
 from .views import MyTokenObtainPairView, MyRegisterView
 
 urlpatterns = [
