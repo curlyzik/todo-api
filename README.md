@@ -8,6 +8,9 @@ This app uses [dj_rest_auth](https://dj-rest-auth.readthedocs.io/en/latest/) and
 These are the api endpoints for the todo app
 
 ```bash
+base url 
+http://127.0.0.1:8000
+
 # USER ENDPOINTS
 /users/login/ # for logging in a user
 /users/register/ # for registering a new user
