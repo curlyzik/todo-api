@@ -9,8 +9,8 @@ These are the api endpoints for the todo app
 
 ```bash
 # USER ENDPOINTS
-/user/login/ # for logging in a user
-/user/register/ # for registering a new user
+/users/login/ # for logging in a user
+/users/register/ # for registering a new user
 
 # TODO ENDPOINTS
 /todo/create/ # for creating new todo
