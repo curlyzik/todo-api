@@ -1,10 +1,11 @@
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
+from core.models import Todo
 from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from .serializers import TodoModelSerializer
-from core.models import Todo
+
 
 # CREATING NEW TODO APP
 @api_view(['POST'])
@@ -21,7 +22,7 @@ def todo_create(request):
         )
 
         serializer = TodoModelSerializer(new_todo, many=False)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
     except:
         return Response({'detail':"Can't create post"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -32,7 +33,7 @@ def todo_lists(request):
     todos = Todo.objects.filter(user=user)
 
     serializer = TodoModelSerializer(todos, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -42,7 +43,7 @@ def todo_detail(request, pk):
         todo = Todo.objects.get(pk=pk)
         if todo.user == user:
             serializer = TodoModelSerializer(todo, many=False)
-            return Response(serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             message = {'detail': 'You cant view this todo'}
             return Response(message, status=status.HTTP_401_UNAUTHORIZED)
@@ -64,7 +65,7 @@ def todo_update(request, pk):
 
         todo.save()
         serializer = TodoModelSerializer(todo, many=False)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         message = {'detail': 'You are not authorized to update this todo'}
         return Response(message, status=status.HTTP_401_UNAUTHORIZED)
@@ -78,7 +79,7 @@ def todo_delete(request, pk):
     if todo.user == user:
         todo.delete()
         message = {'detail': 'Todo deleted successfully'}
-        return Response(message)
+        return Response(message, status=status.HTTP_200_OK)
     else:
         return Response({'detail': 'You are not authorized to delete this todo'})
 
@@ -89,7 +90,7 @@ def get_completed_todo_list(request):
     completed_todo = Todo.objects.filter(user=user, completed=True)
 
     serializer = TodoModelSerializer(completed_todo, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
@@ -98,4 +99,4 @@ def get_uncompleted_todo_list(request):
     uncompleted_todo = Todo.objects.filter(user=user, completed=False)
 
     serializer = TodoModelSerializer(uncompleted_todo, many=True)
-    return Response(serializer.data)
+    return Response(serializer.data, status=status.HTTP_200_OK)

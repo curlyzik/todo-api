@@ -2,7 +2,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from dj_rest_auth.registration.views import RegisterView
 from django.contrib.auth import get_user_model
 
-from .serializers import MyTokenObtainPairSerializer, MyRegisterSerializer,
+from .serializers import MyTokenObtainPairSerializer, MyRegisterSerializer
 
 User = get_user_model()
 
