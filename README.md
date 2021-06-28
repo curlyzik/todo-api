@@ -37,3 +37,6 @@ Steps:
 2. Download the [JSON FILE](https://github.com/curlyzik/todo-api/blob/main/Todo.postman_collection.json)
 3. Open PostMan, Click on Collection.
 4. Click on Import and upload the download file
+
+## Download/Pull Docker Image
+You can download the docker image [](https://hub.docker.com/r/curlyzik/todo-app)
