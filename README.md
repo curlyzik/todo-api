@@ -39,4 +39,4 @@ Steps:
 4. Click on Import and upload the download file
 
 ## Download/Pull Docker Image
-You can download the docker image [](https://hub.docker.com/r/curlyzik/todo-app)
+You can download/pull the docker image for this task [here](https://hub.docker.com/r/curlyzik/todo-app)
