@@ -1,102 +1,72 @@
-from core.models import Todo
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
+from core.models import Todo
+
+from .mixins import MultipleFieldLookupMixin
 from .serializers import TodoModelSerializer
 
 
-# CREATING NEW TODO APP
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def todo_create(request):
-    data = request.data
-    user = request.user
-    try:
-        new_todo = Todo.objects.create(
-            user = user,
-            title = data['title'],
-            description = data['description'],
-            completed = data['completed'],
-        )
+# CREATE A NEW TODO
+class TodoCreate(generics.CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    lookup_field = ['user_id']
 
-        serializer = TodoModelSerializer(new_todo, many=False)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    except:
-        return Response({'detail':"Can't create post"}, status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def todo_lists(request):
-    user = request.user
-    todos = Todo.objects.filter(user=user)
+# GET ALL TODOS CREATED BY USER
+class TodoList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_field = ['user_id']
 
-    serializer = TodoModelSerializer(todos, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(user=self.request.user.id)
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def todo_detail(request, pk):
-    user = request.user
-    try:
-        todo = Todo.objects.get(pk=pk)
-        if todo.user == user:
-            serializer = TodoModelSerializer(todo, many=False)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        else:
-            message = {'detail': 'You cant view this todo'}
-            return Response(message, status=status.HTTP_401_UNAUTHORIZED)
-    except Todo.DoesNotExist:
-        return Response({'detail': "Todo doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
-    
+# GET TODO DETAIL
+class TodoDetail(MultipleFieldLookupMixin, generics.RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_fields = ['user_id','pk']
 
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def todo_update(request, pk):
-    user = request.user
-    data = request.data
-    todo = Todo.objects.get(pk=pk)
+# TO UPDATE TODO
+class TodoUpdate(MultipleFieldLookupMixin, generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_fields = ['user_id','pk']
 
-    if todo.user == user:
-        todo.title = data['title']
-        todo.description = data['description']
-        todo.completed = data['completed']
+# TO DELETE TODO
+class TodoDelete(MultipleFieldLookupMixin, generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_fields = ['user_id','pk']
 
-        todo.save()
-        serializer = TodoModelSerializer(todo, many=False)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    else:
-        message = {'detail': 'You are not authorized to update this todo'}
-        return Response(message, status=status.HTTP_401_UNAUTHORIZED)
+# GET ALL COMPLETED TODOS BY USER
+class TodoCompletedList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_field = ['user_id']
 
-@api_view(['DELETE'])
-@permission_classes([IsAuthenticated])
-def todo_delete(request, pk):
-    user = request.user
-    todo = Todo.objects.get(pk=pk)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(user=self.request.user.id, completed=True)
 
-    if todo.user == user:
-        todo.delete()
-        message = {'detail': 'Todo deleted successfully'}
-        return Response(message, status=status.HTTP_200_OK)
-    else:
-        return Response({'detail': 'You are not authorized to delete this todo'})
+# GET ALL UNCOMPLETED TODOS BY USER
+class TodoUncompletedList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = TodoModelSerializer
+    queryset = Todo.objects.all()
+    lookup_field = ['user_id']
 
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_completed_todo_list(request):
-    user = request.user
-    completed_todo = Todo.objects.filter(user=user, completed=True)
-
-    serializer = TodoModelSerializer(completed_todo, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def get_uncompleted_todo_list(request):
-    user = request.user
-    uncompleted_todo = Todo.objects.filter(user=user, completed=False)
-
-    serializer = TodoModelSerializer(uncompleted_todo, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        return qs.filter(user=self.request.user.id, completed=False)
