@@ -16,27 +16,21 @@ http://127.0.0.1:8000
 /users/register/ # for registering a new user
 
 # TODO ENDPOINTS
-/todo/create/ # for creating new todo
-/todo # for listing all todos created by the author/user
-/todo/completed/ # for listing all the completed todos of the author/user
-/todo/uncompleted/ # for listing all the uncompleted todos of the author/user
-/todo/details/<todo_id>/ # for getting the details of a todo
-/todo/update/<todo_id>/ # for updating a todo
-/todo/delete/<todo_id>/ # for deleting a todo
+/todo/<user_id>/create/             #to create new todo
+/todo/<user_id>/                    #to get all todos created by user
+/todo/<user_id>/<todo_id>/          #to get todo details
+/todo/<user_id>/<todo_id>/update/   #to update todo
+/todo/<user_id>/<todo_id>/delete/   #to delete todo
+/todo/<user_id>/completed/          #to get all completed todo by user
+/todo/user_id>/uncompleted/         #to get all uncompleted todo  by user
+
 ```
 The Todo Api and User Api can be found in the [core/api folder](https://github.com/curlyzik/todo-api/tree/main/core/api) and [users/api folder](https://github.com/curlyzik/todo-api/tree/main/users/api) respectively
 
 ## Integration of Unit Testing For Each EndPoint
 The Todo Unit Test and User Unit Test can be found in the [core folder](https://github.com/curlyzik/todo-api/blob/main/core/tests.py) and [users folder](https://github.com/curlyzik/todo-api/blob/main/users/tests.py) respectively
 
-## Test Endpoints With POSTMAN
-You can test each endpoints using POSTMAN with the the [POSTMAN JSON File](https://github.com/curlyzik/todo-api/blob/main/Todo.postman_collection.json)
-
-Steps:
-1. Download PostMan
-2. Download the [JSON FILE](https://github.com/curlyzik/todo-api/blob/main/Todo.postman_collection.json)
-3. Open PostMan, Click on Collection.
-4. Click on Import and upload the download file
-
-## Download/Pull Docker Image
-You can download/pull the docker image for this task [here](https://hub.docker.com/r/curlyzik/todo-app)
+## RUN APPLICATION WITH DOCKER
+You can run this application if you have docker installed using these commands:
+docker build --tag todo-api .
+docker run --publish 8000:8000 todo-api
