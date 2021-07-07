@@ -23,7 +23,6 @@ http://127.0.0.1:8000
 /todo/<user_id>/<todo_id>/delete/   #to delete todo
 /todo/<user_id>/completed/          #to get all completed todo by user
 /todo/user_id>/uncompleted/         #to get all uncompleted todo  by user
-
 ```
 The Todo Api and User Api can be found in the [core/api folder](https://github.com/curlyzik/todo-api/tree/main/core/api) and [users/api folder](https://github.com/curlyzik/todo-api/tree/main/users/api) respectively
 
@@ -32,5 +31,7 @@ The Todo Unit Test and User Unit Test can be found in the [core folder](https://
 
 ## RUN APPLICATION WITH DOCKER
 You can run this application if you have docker installed using these commands:
+```
 docker build --tag todo-api .
 docker run --publish 8000:8000 todo-api
+```
